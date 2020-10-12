@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Registration from "./auth/Registration.js";
 import Login from "./auth/Login.js";
+import "../style/Login.css";
 
 class Nav extends Component {
   render() {

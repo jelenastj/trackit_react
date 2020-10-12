@@ -91,6 +91,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="grid-container">
+        <h2>Expense tracker</h2>
         <Nav
           loggedInStatus={this.state.loggedInStatus}
           handleSuccessfulAuth={this.handleSuccessfulAuth}

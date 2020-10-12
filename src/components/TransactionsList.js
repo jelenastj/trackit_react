@@ -6,7 +6,7 @@ export default class TransactionsList extends Component {
     super(props);
     
   }
-
+  
   mapTrans =() =>{
    
     if (trans !== {}) {

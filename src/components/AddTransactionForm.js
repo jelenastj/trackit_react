@@ -35,18 +35,15 @@ class AddTransactionForm extends Component {
           amount: this.state.amount
         },
       }).then((res) => {
-
-      console.log(res)
       this.props.addTrans(res.data)
-        //this.props.addTrans(res.data.transaction)
       });
 
-      this.setState = ({
+      this.setState({
         date: "",
         name: "",
         category: "",
-        amount: null
-      }, () => this.props.history.push("/dashboard"));
+        amount: "",
+      });
     }
   };
 
@@ -56,13 +53,13 @@ class AddTransactionForm extends Component {
         <div className="container">
           <form className="form" onSubmit={this.onFormSubmit}>
             <div className="form-control">
-              <input type="date" name="date" onChange={this.handleChange} />
+              <input type="date" name="date" onChange={this.handleChange} value={this.state.date}/>
             </div>
             <div className="form-control">
-              <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
+              <input type="text" name="name" placeholder="Name" onChange={this.handleChange}value={this.state.name} />
             </div>
             <div className="form-control">
-              <input type="text" name="category" placeholder="Category" onChange={this.handleChange} />
+              <input type="text" name="category" placeholder="Category" onChange={this.handleChange}value={this.state.category} />
             </div>
             <div className="form-control">
               <input
@@ -71,9 +68,10 @@ class AddTransactionForm extends Component {
                 placeholder="Amount"
                 step="0.01"
                 onChange={this.handleChange}
+                value={this.state.amount}
               />
             </div>
-            <button className="ui button" type="submit" onClick={this.onFormSubmit}>
+            <button className="ui button" type="submit" >
               Add Transaction
           </button>
           </form>

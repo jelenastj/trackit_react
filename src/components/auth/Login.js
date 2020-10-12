@@ -47,7 +47,7 @@ export default class Login extends Component {
     return (
       
       <div className="log-container">
-        <h5 >Already have an account?</h5>
+        <p >Already have an account?</p>
         <form className="form-log" onSubmit={this.handleSubmit}>
         <div className="form-control-log">
           <input 
