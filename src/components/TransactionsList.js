@@ -1,24 +1,37 @@
-import React from "react";
+import React, { Component } from 'react';
 import Transaction from "./Transaction";
 
-const TransactionsList = (props) => {
+export default class TransactionsList extends Component {
+  constructor(props) {
+    super(props);
+    
+  }
 
-  function mapTrans() {
-    if (props.trans !== "") {
-      return props.trans.map(tran => {
+  mapTrans =() =>{
+   
+    if (trans !== {}) {
+      return trans.map(tran => {
         return <Transaction key={tran.id} tran={tran} />
       })
     }
   }
-  return (
-    <table className="ui celled striped padded table">
+  // componentDidMount() {
+  //   this.mapTrans();
+  // }
+ 
+  render() {
+    const id = this.props.user.id;
+    const trans = this.props.trans.filter((tran) => tran.user_id === id)
+    
+  return(
+        <table className = "ui celled striped padded table" >
       <tbody>
         <tr>
           <th>
             <h2 className="ui center aligned header">Date</h2>
           </th>
           <th>
-            <h2 className="ui center aligned header">Description</h2>
+            <h2 className="ui center aligned header">Name</h2>
           </th>
           <th>
             <h2 className="ui center aligned header">Category</h2>
@@ -27,10 +40,13 @@ const TransactionsList = (props) => {
             <h2 className="ui center aligned header">Amount</h2>
           </th>
         </tr>
-        {mapTrans()}
-      </tbody>
-    </table>
-  );
-};
 
-export default TransactionsList;
+        { trans.map(tran => {
+        return <Transaction key={tran.id} tran={tran} />})}
+
+      </tbody>
+        </table>
+      );
+    };
+  }
+

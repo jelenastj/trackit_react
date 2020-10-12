@@ -3,8 +3,8 @@ import axios from 'axios';
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 import TransactionsList from "./TransactionsList";
-const URL = " http://localhost:3001/transactions";
 import "../style/App.css";
+import "semantic-ui-css/semantic.min.css";
 
 
 
@@ -27,7 +27,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount = () => {
-    fetch(URL).then(r => r.json()).then(trans => this.setState({ trans }))
+    fetch('http://localhost:3001/transactions').then(r => r.json()).then(trans => this.setState({ trans }))
   }
   handleInput(newTran) {
     console.log(newTran)
@@ -47,17 +47,38 @@ export default class Dashboard extends Component {
   }
 
   render() {
+
     return (
+
       <div>
-        <button className="logout-btn" onClick={() => this.handleLogoutClick()}>Logout</button>
-        <h1></h1>
-        <Search searchTerm={this.searchTerm} />
-        <h1></h1>
-        <AddTransactionForm addTrans={this.addTrans} />
-        <TransactionsList trans={this.state.trans
-          .filter((tran) => tran.description.toLowerCase().includes(this.state.term))} />
-        {/* <h1>Status: {props.loggedInStatus}</h1> */}
-      </div>
+        <div>
+
+
+          <button className="logout-btn" onClick={() => this.handleLogoutClick()}>Logout</button>
+
+          <h1></h1>
+        </div>
+        <div>
+        {this.props.loggedInStatus === "LOGGED_IN" ? (
+          <div>
+            <Search searchTerm={this.searchTerm} />
+            <h1></h1>
+            <AddTransactionForm
+              addTrans={this.addTrans} 
+              user = {this.props.user}
+              history={this.props.history}
+              
+              />
+            <TransactionsList
+              trans={this.state.trans
+                .filter((tran) => tran.name.toLowerCase().includes(this.state.term))}
+              user = {this.props.user}
+            />
+            </div>
+        ) : null }
+          </div>
+        </div>
     )
   }
+  
 }
